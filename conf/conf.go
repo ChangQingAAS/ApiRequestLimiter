@@ -1,5 +1,7 @@
 package conf
 
+import "strconv"
+
 type Redis struct {
 	Host string `json:"host"`
 }
@@ -15,7 +17,9 @@ var (
 )
 
 func init() {
-	//TODO: load file
+	redis.Host = ":6379"
+	limiter.MaxPermits = strconv.Itoa(500)
+	limiter.Rate = strconv.Itoa(50)
 }
 
 func GetRedis() Redis {
